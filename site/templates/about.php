@@ -4,7 +4,7 @@
 
 	<div id="about-content">
 		<div class="row">
-			<h1><a href="<?= $site->url() ?>" data-target="index"><?= $site->title()->upper()->html() ?></a></h1>
+			<h1><a href="<?= $site->url() ?>" data-target="index"><span><?= $site->title()->upper()->html() ?></span><span>CLOSE</span></a></h1>
 			<?= $page->text()->kt() ?>
 		</div>
 		

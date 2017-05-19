@@ -61,10 +61,12 @@
 
 	<?php if($site->pattern()->isNotEmpty()): ?>
 		<style type="text/css">
-			#elevator .fp-section.serie .slide.is-selected .patternify::after {
+		@media only screen and (min-width:1024px) {
+			#intro::after, #elevator .fp-section.serie .slide.is-selected .patternify::after, .index-serie .thumbnail a::after {
 				background-image: url('<?= $site->pattern()->toFile()->url() ?>');
 				background-size: <?= $site->patternsize().'px' ?>;
 			}
+		}
 		</style>
 	<?php endif ?>
 

@@ -4,13 +4,13 @@
 
 <div id="top-bar">
 	<div class="column-index">
-		<h1>INDEX</h1>
+		<h1><a href="<?= $site->url() ?>" data-target="index"><span>INDEX</span><span>CLOSE</span></a></h1>
 	</div>
 	<div class="column-index">
 		<span event-target="list-toggle"></span>
 	</div>
-	<div id="close-btn">
-		<a href="<?= $site->url() ?>" data-target="index">CLOSE</a>
+	<div id="about-btn">
+		<a href="<?= $about->url() ?>" data-title="<?= $about->title()->html() ?>" data-target="page"><?= $about->title()->upper()->html() ?></a>
 	</div>
 </div>
 

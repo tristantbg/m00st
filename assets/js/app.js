@@ -40,7 +40,7 @@ $(function() {
                         $body.addClass('loading');
                         setTimeout(function() {
                             window.history.go(-1);
-                        }, 500);
+                        }, 200);
                     } else {
                         url = $el.attr('href');
                     }
@@ -48,7 +48,7 @@ $(function() {
                     $body.addClass('loading');
                     setTimeout(function() {
                         window.location = url;
-                    }, 500);
+                    }, 200);
                 });
                 $body.on({
                     mouseenter: function() {
@@ -210,6 +210,7 @@ $(function() {
                         console.log(hash);
                         $.fn.fullpage.silentMoveTo(Object.keys(hash)[0]);
                         if (hash.slide) {
+                            $slider[index - 1].focus();
                             $slider[index - 1].flickity('select', hash.slide - 1, true, true);
                         }
                         hash = false;

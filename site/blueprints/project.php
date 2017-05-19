@@ -13,6 +13,9 @@ files:
       type: text
 fields:
   prevnext: prevnext
+  headMain:
+    label: Page infos
+    type: headline
   title:
     label: Title
     type:  text
@@ -37,6 +40,9 @@ fields:
       - page
       - link
       - italic
+  headContent:
+    label: Content
+    type: headline
   medias:
     label: Gallery
     type: builder
