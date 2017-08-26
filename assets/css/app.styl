@@ -40,7 +40,7 @@ body
 	text-rendering optimizeLegibility
 	font-smoothing()
 
-h1, h2
+h1
 	text-transform uppercase
 	margin-bottom 1em
 	&:last-child
@@ -208,9 +208,9 @@ pattern()
 			position relative
 			vertical-align middle
 			text-transform uppercase
-			color $primary
+			color $secondary
 			z-index 600
-			font-size 16vw
+			font-size 10vw
 			letter-spacing -.05em
 			white-space nowrap
 			+below($md)
@@ -245,14 +245,16 @@ pattern()
 			top 0
 			left 0
 			overflow hidden
-			mix-blend-mode difference
+			// mix-blend-mode difference
 			z-index 500
 			animation(lsd 20s infinite alternate ease)
-			vendor(filter, invert(1) brightness(1.5) saturate(0.8))
+			// vendor(filter, invert(1) brightness(1.5) saturate(0.8))
+			vendor(filter, invert(1) grayscale(1) contrast(1.5))
 			+below($md)
 				display none
 	&.flash
 		#intro-image
+			vendor(filter, invert(1) grayscale(1) contrast(1.5))
 			span
 				transition(letter-spacing 1000ms cubic-bezier(.11,.35,.2,1))
 				letter-spacing 0em
@@ -530,6 +532,7 @@ body
 [event-target="list-toggle"]
 	cursor pointer
 	position relative
+	text-transform uppercase
 	&::after
 		content 'Go by list'
 
