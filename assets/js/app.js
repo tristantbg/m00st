@@ -62,13 +62,13 @@ $(function() {
                 }, '#index-content.list [data-hover]');
                 var bottombar = false;
                 $(window).mousemove(function(event) {
-                    if (!bottombar && event.pageY > height - height / 3) {
+                    if (!bottombar && event.pageY > height - height / 2.5) {
                         app.showBar();
                         window.clearTimeout(idle);
                         idle = setTimeout(function() {
                             app.hideBar();
                         }, 1500);
-                    } else if (bottombar && event.pageY <= height - height / 3) {
+                    } else if (bottombar && event.pageY <= height - height / 2.3) {
                         app.hideBar();
                     }
                     // if (!bottombar) {
