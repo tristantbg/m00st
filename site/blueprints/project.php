@@ -132,6 +132,36 @@ fields:
             options:
               full: Full
               contain: Contain
+      duo:
+        label: Duo
+        entry: >
+               <table style="width:100%; font-size: 11px">
+               <tr>
+               <td style="width:20%">Image 1</td>
+               <td>Size 1</td>
+               <td style="width:20%">Image 2</td>
+               <td>Size 2</td>
+               </tr>
+               <tr>
+               <td style="width:20%"><img src="{{_thumb1}}" width="80px"><br>{{content1}}</td>
+               <td>{{size1}}</td>
+               <td style="width:20%"><img src="{{_thumb2}}" width="80px"><br>{{content2}}</td>
+               <td>{{size2}}</td>
+               </tr>
+               </table>
+        fields:
+          content1:
+            label: Image 1
+            type: quickselect
+            options: images
+            required: true
+            width: 1/2
+          content2:
+            label: Image 2
+            type: quickselect
+            options: images
+            required: true
+            width: 1/2
       collage:
         label: Collage
         entry: >

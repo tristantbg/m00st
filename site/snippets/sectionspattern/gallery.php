@@ -15,17 +15,6 @@
 	alt="<?= $caption ?>" 
 	class="lazyimg" 
 	height="100%" width="auto">
-	<div class="lsd">
-		<img 
-		src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-		data-src="<?= resizeOnDemand($image, 1500) ?>" 
-		data-srcset="<?= $srcset ?>" 
-		data-sizes="auto" 
-		data-optimumx="1.5" 
-		alt="<?= $caption ?>" 
-		class="lazyimg" 
-		height="100%" width="auto">
-	</div>
 	<?php if($seo): ?>
 	<noscript>
 		<img src="<?= resizeOnDemand($image, 1500) ?>" alt="<?= $caption ?>" height="100%" width="auto" />

@@ -14,16 +14,6 @@ fields:
   keywords:
     label: Keywords
     type:  tags
-  pattern:
-    label: Custom pattern
-    type: image
-    width: 1/2
-  patternsize:
-    label: Pattern size
-    type: number
-    min: 10
-    required: true
-    width: 1/2
   googleAnalytics:
     label: Google Analytics ID
     type: text
@@ -35,6 +25,3 @@ fields:
     type: image
     help: 1200x630px minimum
     width: 1/2
-  introimage:
-    label: Intro image
-    type: image

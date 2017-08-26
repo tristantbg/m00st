@@ -7,7 +7,7 @@
 	for ($i = 500; $i <= 2000; $i += 500) $srcset .= resizeOnDemand($image, $i) . ' ' . $i . 'w,';
 ?>
 <div class="slide middle-align">
-	<div class="image-content solo patternify<?php e($imagesize == 'full', ' full') ?>"  
+	<div class="image-content solo<?php e($imagesize == 'full', ' full') ?>"  
 	<?php if($imagesize == 'custom'): ?>
 		style="height: <?= $height ?>%;"
 	<?php endif ?>>
@@ -20,6 +20,17 @@
 	alt="<?= $caption ?>" 
 	class="lazyimg" 
 	height="100%" width="auto">
+	<div class="lsd">
+		<img 
+		src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
+		data-src="<?= resizeOnDemand($image, 1500) ?>" 
+		data-srcset="<?= $srcset ?>" 
+		data-sizes="auto" 
+		data-optimumx="1.5" 
+		alt="<?= $caption ?>" 
+		class="lazyimg" 
+		height="100%" width="auto">
+	</div>
 	<?php if($seo): ?>
 	<noscript>
 		<img src="<?= resizeOnDemand($image, 1500) ?>" alt="<?= $caption ?>" height="100%" width="auto" />

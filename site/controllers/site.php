@@ -6,6 +6,7 @@ return function ($site, $pages, $page) {
 	return array(
 	'about'	=> page('about'),
 	'projectsPage'	=> $projectsPage,
+	'indexPage'	=> page('index'),
 	'projects'	=> $projects,
 	'first'	=> $projects->first(),
 	'last'	=> $projects->last()

@@ -21,7 +21,7 @@ $kinetic = cubic-bezier(0.77, 0, 0.175, 1)
 // CSS Reset
 global-reset()
 
-webfont('Confederation-Regular', 'Confederation-Regular', true, 'normal')
+webfont('AkzidenzGroteskRegular', 'AkzidenzGroteskRegular', true, 'normal')
 
 body,html
 	width 100%
@@ -29,13 +29,14 @@ body,html
 	background $primary
 
 html
-	font-size 62.5%
-	+below($xs)
-		font-size 50%
+	font-size .7vw
+	+below($md)
+		font-size 50% !important
 
 body
-	font-family 'Confederation-Regular', Helvetica Neue, Arial, sans-serif
+	font-family 'AkzidenzGroteskRegular', Helvetica Neue, Arial, sans-serif
 	font-size 2rem
+	letter-spacing .02em
 	text-rendering optimizeLegibility
 	font-smoothing()
 
@@ -54,7 +55,6 @@ p:last-child
 
 .title
 	font-size 2rem
-	letter-spacing -.05em
 
 small, .credits
 	font-size 1rem
@@ -81,6 +81,12 @@ a, a:hover, a:visited, a:focus
 .lazyimg.lazyloaded
 	opacity 1
 
+.loader
+	position fixed
+	width 100%
+	height 100%
+	background $primary
+
 #outdated
 	display none
 	text-align center
@@ -96,7 +102,7 @@ a, a:hover, a:visited, a:focus
 	.inner
 		padding 8rem 20%
 
-.no-js, .no-svg, .no-flexbox
+.no-js, .no-svg, .no-flexbox, .no-csstransforms, .no-cssfilters, .no-csstransitions
 	#outdated
 		display block
 
@@ -115,152 +121,221 @@ a, a:hover, a:visited, a:focus
 //     }
 // }
 
-@keyframes rotate {
+@keyframes lsd {
+	0% {
+        transform(scaleY(1.1))
+    }
+    33% {
+        transform(scaleY(1.5) skewY(-6deg) scaleX(1.2) translateZ(0))
+    }
+    66% {
+    	transform(scaleY(1.2) skewY(6deg) translateZ(0))
+    }
     100% {
-        transform(rotate(360deg))
+    	transform(scaleY(1.1) scaleX(1.1))
     }
 }
 
-@keyframes backmove {
-	100% {
-        background-position 0% 50%
+// @keyframes rotate {
+//     100% {
+//         transform(rotate(360deg))
+//     }
+// }
+
+// @keyframes backmove {
+// 	100% {
+//         background-position 0% 50%
+//     }
+//     100% {
+//         background-position 100% 50%
+//     }
+// }
+
+@keyframes flash {
+	0% {
+        opacity 0
+    }
+    50% {
+    	opacity 0
+    }
+    50.0001% {
+    	opacity 1
     }
     100% {
-        background-position 100% 50%
+        opacity 1
     }
 }
 
-@keyframes dash {
-    0% {
-        stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0
-    }
-    30% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px
-    }
-    100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px
-    }
-}
+// @keyframes dash {
+//     0% {
+//         stroke-dasharray: 1, 200;
+//         stroke-dashoffset: 0
+//     }
+//     30% {
+//         stroke-dasharray: 89, 200;
+//         stroke-dashoffset: -35px
+//     }
+//     100% {
+//         stroke-dasharray: 89, 200;
+//         stroke-dashoffset: -124px
+//     }
+// }
 
 pattern()
-	background transparent url('../../images/pattern.jpg') center repeat
-	background-size 800px
-	animation backmove 10s linear infinite
+	background transparent url('../../images/noise.png') center repeat
+	background-size 100px
+	//animation backmove 5s linear infinite
 
 #intro
-	transition transform 1200ms $kinetic, visibility 1200ms ease
 	position fixed
 	width 100%
 	height 100%
 	top 0
 	left 0
-	z-index 9000
+	z-index 4000
 	background-color $secondary
-	cursor pointer
 	#intro-image
-		transition(opacity 1s ease)
 		width 100%
 		height 100%
-		background-color $secondary
+		background-color $primary
 		background-position center
 		background-size cover
-		vendor(filter, grayscale(1))
-	&::after
-		backface()
-		transition opacity 500ms ease//, background-position 500ms ease
-		opacity 1
-		content ''
-		position absolute
-		top 0
-		left 0
-		width 100%
-		height 100%
-		pattern()
-		mix-blend-mode difference
-		//vendor(filter, grayscale(1) contrast(0.2))
-		z-index 500
-	&.hidden
-		transform(translateY(-100%) translateZ(0))
-		visibility hidden
-		#intro-image
-			//opacity 0
-		
-
-.loader
-	display none
-	position fixed
-	width 100%
-	height 100%
-	top 0
-	left 0
-	//background $primary url('../../images/loader.gif') center no-repeat
-	background $secondary
-	background-size 15px
-	z-index 10000
-	.spinner
-		width 50px
-		height 50px
-		align()
-		.circular
-			animation rotate 2s linear infinite
+		text-align center
+		a
+			display inline-block
+		span
+			visibility hidden
+			position relative
+			vertical-align middle
+			text-transform uppercase
+			color $primary
+			z-index 600
+			font-size 16vw
+			letter-spacing -.05em
+			white-space nowrap
+			+below($md)
+				visibility visible
+		&::before
+			content ''
 			height 100%
-			transform-origin center center
-			width 100%
+			display inline-block
+			vertical-align middle
+		&::after
+			content ''
+			visibility hidden
+			opacity 0.4
 			position absolute
 			top 0
-			bottom 0
 			left 0
-			right 0
-			margin auto
-			.path
-				stroke $secondary
-				stroke-dasharray 1, 200
-				stroke-dashoffset 0
-				animation dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite
+			width 100%
+			height 100%
+			pattern()
+			mix-blend-mode color-burn
+			z-index 500
+			+below($md)
+				display none
+		.lsd
+			visibility hidden
+			opacity 0.6
+			position absolute
+			background-position center
+			background-size cover
+			width 100%
+			height 100%
+			top 0
+			left 0
+			overflow hidden
+			mix-blend-mode difference
+			z-index 500
+			animation(lsd 20s infinite alternate ease)
+			vendor(filter, invert(1) brightness(1.5) saturate(0.8))
+			+below($md)
+				display none
+	&.flash
+		#intro-image
+			span
+				transition(letter-spacing 1000ms cubic-bezier(.11,.35,.2,1))
+				letter-spacing 0em
+			span, &::after, .lsd
+				visibility visible
 
 #elevator
-	.fp-section.serie
-		.slide.is-selected .patternify
-			//background $secondary
+	.fp-section.leaving.serie
+		.slide .lsd
+			display none
+			transition(opacity 300ms ease)
+			mix-blend-mode difference
+			opacity 0
+			&::after
+				content ''
+				opacity 0.7
+				position absolute
+				top 0
+				left 0
+				width 100%
+				height 100%
+				pattern()
+				mix-blend-mode color-burn
+				z-index 500
+				+below($md)
+					display none
+			img
+				vendor(filter, invert(1) brightness(0.9) saturate(0.8))
+		.slide.is-selected
 			backface()
-			img
-				+above($md + 1)
-					transition(filter 1000ms ease)
-					vendor(filter, grayscale(1))
-					//opacity 0
-			&::after
-				backface()
-				+above($md + 1)
-					transition opacity 1s ease//, background-position 500ms ease
-					opacity 1
-					content ''
-					position absolute
-					top 0
-					left 0
-					width 100%
-					height 100%
-					pattern()
-					mix-blend-mode difference
-					//vendor(filter, grayscale(1) contrast(0.2))
-					z-index 500
+			transition(transform 1800ms ease)
+			transform(scaleY(1.2) skewY(-6deg) translateY(-30%) translateZ(0))
+			transform-origin bottom
+			+below($md)
+				transform(scaleY(1.4) skewY(-10deg) translateY(-30%) translateZ(0))
+			.lsd
+				display block
+				opacity 0.6
+				position absolute
+				width 100%
+				height 100%
+				top 0
+				left 0
+				overflow hidden
+				+below($md)
+					display none
+				img
+					backface()
+					transition(transform 1800ms ease)
+					transform(scaleY(1.15))
+					transform-origin bottom
+		&:nth-child(odd)
+			.slide.is-selected
+				transform(scaleY(1.2) skewY(6deg) translateY(-30%) translateZ(0))
+				+below($md)
+					transform(scaleY(1.4) skewY(10deg) translateY(-30%) translateZ(0))
 	.fp-section.serie.active
-		.slide.is-selected .patternify
-			img
-				vendor(filter, grayscale(0))
-				//opacity 1
-			&::after
-				transition opacity 0s ease
-				//transition-delay 1s
+		.slide.is-selected
+			transform(none)
+			.lsd
 				opacity 0
-				//background-position 100% 50%
+				img
+					transform(scale(1))
+
+body.backwards
+	#elevator
+		.fp-section.leaving.serie
+			.slide.is-selected
+				transform-origin top
+				transform(scaleY(1.2) skewY(6deg) translateY(30%) translateZ(0))
+				+below($md)
+					transform(scaleY(1.4) skewY(10deg) translateY(30%) translateZ(0))
+			&:nth-child(odd)
+				.slide.is-selected
+					transform(scaleY(1.2) skewY(-6deg) translateY(30%) translateZ(0))
+					+below($md)
+						transform(scaleY(1.4) skewY(-10deg) translateY(30%) translateZ(0))
+		.fp-section.serie .slide.is-selected .lsd img
+			transform-origin top
 
 body
 	&::after
 		content ''
-		backface()
 		transition all .2s ease//, background-position 500ms ease
 		content ''
 		position fixed
@@ -288,7 +363,7 @@ body
 		.flickity-viewport
 			cursor default
 		.flickity-slider
-			transform none !important
+			transform(none !important)
 		.slide
 			display block
 			width 100%
@@ -344,6 +419,33 @@ body
 				.image-content
 					+below($md)
 						height 50%
+			.duo-content
+				height 100%
+				flexbox()
+				justify-content center
+				align-items center
+				.group
+					width 100%
+					height 100%
+					+above($md + 1)
+						height 60vh
+					+below($md)
+						flexbox()
+						justify-content center
+						align-items center
+					.image-content
+						width 50%
+						img
+							height 100%
+							width 100%
+							object-fit contain
+							object-position right
+							font-family "object-fit: contain"
+						&:nth-child(2)
+							img
+								object-position left
+						.lsd::after
+							display none
 			.collage-content
 				width 100vh
 				height 100%
@@ -369,7 +471,7 @@ body
 		.flickity-prev-next-button
 			top 0
 			height 100%
-			width 25%
+			width 50%
 			margin-top 0
 			background transparent
 			padding 0
@@ -382,10 +484,10 @@ body
 			svg
 				display none
 		.flickity-prev-next-button.previous
-			cursor w-resize
+			cursor url("../../images/arrow-l.png") 12 5, auto
 			left 0
 		.flickity-prev-next-button.next
-			cursor e-resize
+			cursor url("../../images/arrow-r.png") 12 5, auto
 			right 0
 
 .column-about
@@ -415,13 +517,19 @@ body
 	span(1)
 	padding $padding
 
-#page-content.dark
+.dark
 	background $secondary
 	color $primary
-	min-height 100vh
+	#page-content
+		background $secondary
+		color $primary
+		min-height 100vh
+		#top-bar
+			background $secondary
 
 [event-target="list-toggle"]
 	cursor pointer
+	position relative
 	&::after
 		content 'Go by list'
 
@@ -433,9 +541,11 @@ body
 		display none
 	&:hover
 		span:first-child
-			display none
+			+above($md + 1)
+				display none
 		span:last-child
-			display block
+			+above($md + 1)
+				display block
 
 .index-serie
 	span(1)
@@ -443,21 +553,32 @@ body
 	h2
 		span(1.5/8, offset: 2/8)
 		flex-grow 1
-		display inline-block
+		display block
+		float left
 		vertical-align top
-		margin-bottom 0
+		margin-bottom ($padding/2)
+		+below($md)
+			span(1/2, offset: 1/4)
 	.thumbnails
 		// display inline-flex
 		// flex-wrap wrap
 		// justify-content flex-start
 	.thumbnail
-		display inline-block
-		vertical-align top
-		margin-bottom $padding
-		margin-right 4px
+		transition height 500ms $kinetic, opacity 200ms ease 500ms
+		display block
+		position relative
+		float left
+		margin-right $padding
+		overflow hidden
+		+above($md + 1)
+			height 'calc(15vw + %s)' % ($padding)
+		+below($md)
+			height 'calc(30vw + %s)' % ($padding/2)
+			margin-right ($padding/2)
 		a
 			position relative
 			display block
+			height 100%
 			&::after
 				+above($md + 1)
 					//transition opacity .5s ease
@@ -467,26 +588,33 @@ body
 					top 0
 					left 0
 					width 100%
-					height 100%
+					height 15vw
 					pattern()
-					mix-blend-mode difference
-					//vendor(filter, grayscale(1) contrast(0.2))
+					mix-blend-mode screen
+					//vendor(filter, grayscale(1) contrast(2))
 					z-index 500
 			&:hover::after
 				+above($md + 1)
 					opacity 1
 			&:hover img
-				//vendor(filter, grayscale(1))
+				//mix-blend-mode difference
+				vendor(filter, invert(1) grayscale(1) contrast(1.5))
 		img
-			//transition(filter .5s ease)
+			transition(filter .2s ease)
 			display block
-			max-height 150px
+			width auto
+			+above($md + 1)
+				height 15vw
+			+below($md)
+				height 30vw
 			//max-width 150px
 			//object-fit contain
 		.slide-number
-			//display none
+			display none
+			position absolute
+			bottom ($padding/2)
+			left 0
 			font-size 1rem
-			margin-top .5em
 		// img.lazyloaded + .slide-number
 		// 	display block
 		&.newslide
@@ -503,7 +631,10 @@ body
 			h2:hover
 				letter-spacing .2em
 			.thumbnail
-				display none
+				transition opacity 200ms ease, height 500ms $kinetic 300ms
+				opacity 0
+				height 0
+				margin-bottom 0
 
 #image-hover
 	display none
@@ -517,10 +648,11 @@ body
 	+below($md)
 		span(1)
 	+above($md + 1)
+		margin-top 2em
 		width 50%
 		padding-right 6.25%
 		float left
-		height 'calc(100vh - %s)' % ($padding*2)
+		height 'calc(100vh - %s - 2em)' % ($padding*2)
 		flexbox()
 		justify-content space-between
 		flex-direction column
@@ -530,6 +662,7 @@ body
 
 #about-clients
 	+above($md + 1)
+		margin-top 2em
 		margin-left 50%
 
 #top-bar
@@ -539,10 +672,21 @@ body
 	width 100%
 	padding $padding
 	background $primary
+	z-index 4000
 	#about-btn
 		span(1/8)
 		float right
 		text-align right
+		+below($md)
+			span(1/4)
+			text-align right
+	.column-index:nth-child(2)
+		+below($md)
+			span(1/2)
+	.title
+		span(1/2)
+	#about-bar
+		span(1/2)
 
 #bottom-bar
 	position fixed
@@ -554,20 +698,35 @@ body
 	text-transform uppercase
 	z-index 1000
 	.hover
-		visibility hidden
+		+above($md + 1)
+			visibility hidden
 	#image-number
 		span(1/16)
+		+below($md)
+			display none
 	#serie-infos
 		span(1/8)
+		+below($md)
+			span(1/2)
 	#index-btn
-		align(horizontal)
+		+above($md + 1)
+			align(horizontal)
+		+below($md)
+			span(1/4)
 	#serie-number
 		span(1/8, offset: 7/16)
+		+below($md)
+			display none
 	#serie-nav
 		span(1/8)
+		+below($md)
+			display none
 	#about-btn
 		span(1/8)
 		text-align right
+		+below($md)
+			span(1/4)
+			text-align right
 	&:hover, &.visible
 		background $primary
 		.hover

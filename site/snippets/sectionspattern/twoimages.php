@@ -22,17 +22,6 @@
 			alt="<?= $caption ?>" 
 			class="lazyimg" 
 			height="100%" width="auto">
-			<div class="lsd">
-				<img 
-				src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-				data-src="<?= resizeOnDemand($image1, 1500) ?>" 
-				data-srcset="<?= $srcset1 ?>" 
-				data-sizes="auto" 
-				data-optimumx="1.5" 
-				alt="<?= $caption ?>" 
-				class="lazyimg" 
-				height="100%" width="auto">
-			</div>
 			<?php if($seo): ?>
 			<noscript>
 				<img src="<?= resizeOnDemand($image1, 1500) ?>" alt="<?= $caption ?>" height="100%" width="auto" />
@@ -49,17 +38,6 @@
 			alt="<?= $caption ?>" 
 			class="lazyimg" 
 			height="100%" width="auto">
-			<div class="lsd">
-				<img 
-				src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-				data-src="<?= resizeOnDemand($image2, 1500) ?>" 
-				data-srcset="<?= $srcset2 ?>" 
-				data-sizes="auto" 
-				data-optimumx="1.5" 
-				alt="<?= $caption ?>" 
-				class="lazyimg" 
-				height="100%" width="auto">
-			</div>
 			<?php if($seo): ?>
 			<noscript>
 				<img src="<?= resizeOnDemand($image2, 1500) ?>" alt="<?= $caption ?>" height="100%" width="auto" />

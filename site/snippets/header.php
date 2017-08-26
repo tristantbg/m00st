@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js<?php e($page->intendedTemplate() == 'about', ' dark') ?>">
 <head>
 
 	<meta charset="UTF-8" />

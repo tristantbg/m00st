@@ -1,78 +1,63 @@
 <?php snippet('header') ?>
 
-<div id="page-content" class="page index">
+<?php snippet('') ?>
 
-<div id="top-bar">
-	<div class="column-index">
-		<h1><a href="<?= $site->url() ?>" data-target="index"><span>INDEX</span><span>CLOSE</span></a></h1>
+<div id="elevator">
+
+<?php foreach ($projects as $key => $project): ?>
+
+<div 
+	class="serie" 
+	data-num="<?= $project->num() ?>" 
+	data-title="<?= $project->title()->html() ?>" 
+	data-subtitle="<?php e($project->date(), $project->date('Y').' '); echo $project->subtitle()->html(); ?>" 
+	data-anchor="<?= $project->uid() ?>" 
+	<?php if($project->hasPrev()): ?>
+	data-previous="<?= $project->prev()->uid() ?>" 
+	<?php else: ?>
+	data-previous="<?= $last->uid() ?>" 
+	<?php endif ?>
+	<?php if($project->hasNext()): ?>
+	data-next="<?= $project->next()->uid() ?>" 
+	<?php else: ?>
+	data-next="<?= $first->uid() ?>" 
+	<?php endif ?>
+	>
+	
+	<?php $caption = $project->title()->html().' — © '.$site->title()->html(); ?>
+	
+	<div class="slider">
+		<?php foreach($project->medias()->toStructure() as $section): ?>
+
+			<?php snippet('sections/' . $section->_fieldset(), array('project' => $project, 'data' => $section, 'caption' => $caption, 'seo' => false)) ?>
+
+		<?php endforeach ?>
 	</div>
-	<div class="column-index">
-		<span event-target="list-toggle"></span>
-	</div>
-	<div id="about-btn">
-		<a href="<?= $about->url() ?>" data-title="<?= $about->title()->html() ?>" data-target="page"><?= $about->title()->upper()->html() ?></a>
-	</div>
-</div>
-
-<div id="index-content">
-
-	<?php foreach ($projects as $key => $project): ?>
-
-	<div
-		class="index-serie" 
-		data-num="<?= $project->num() ?>" 
-		data-title="<?= $project->title()->html() ?>" 
-		data-subtitle="<?php e($project->date(), $project->date('Y').' '); echo $project->subtitle()->html(); ?>" 
-		data-anchor="<?= $project->uid() ?>">
-
-			<a href="<?= $project->url() ?>" 
-			data-anchor="<?= $project->uid() ?>" 
-			data-target="project" 
-			data-slide="1" 
-			<?php if($project->featured()->isNotEmpty()): ?>
-			data-hover="<?= resizeOnDemand($project->featured()->toFile(), 1500) ?>" 
-			<?php endif ?>
-			>
-			<h2><?= $project->title()->html() ?></h2>
-			</a>
-			
-			<?php $slideIdx = 1 ?>
-
-			<?php foreach($project->medias()->toStructure() as $section): ?>
-
-				<?php 
-					$lazygallery = false;
-					if ($section->_fieldset() == 'twoimages') {
-						$images = array($section->content1(), $section->content2());
-					} 
-					 else {
-						$images = $section->content()->yaml();
-					}
-					if ($section->_fieldset() == 'gallery') {
-						$lazygallery = true;
-					}
-				?>
-
-				<?php snippet('index', array('project' => $project, 'images' => $images, 'slide' => $slideIdx, 'lazygallery' => $lazygallery)) ?>
-
-				<?php 
-				if ($lazygallery) {
-					$slideIdx += count($images);
-				} else {
-					$slideIdx++;
-				}
-				?>
-
-			<?php endforeach ?>
-
-	</div>
-
-	<?php endforeach ?>
 
 </div>
 
-<img id="image-hover" src="">
+<?php endforeach ?>
 
+</div>
+
+<div id="bottom-bar">
+	<div id="image-number">
+		Image
+		<br><span>1/<?= count($first->medias()->yaml()) ?></span>
+	</div>
+	<div id="serie-infos" class="hover">
+		<?= $first->title()->html().'<br>'.$first->date('Y').' '.$first->subtitle()->html() ?>
+	</div>
+	<div id="index-btn" class="title hover"><a href="<?= $indexPage->url() ?>" data-title="<?= $indexPage->title()->html() ?>" data-target="page"><?= $indexPage->title()->html() ?></a></div>
+	<div id="serie-number" class="hover">
+		Serie
+		<br><span>1</span>/<?= count($projects) ?>
+	</div>
+	<div id="serie-nav" class="hover">
+		<a href="" id="prev-serie" event-target="prev">Previous serie</a>
+		<br><a href="" id="next-serie" event-target="next">Next serie</a>
+	</div>
+	<div id="about-btn" class="title hover"><a href="<?= $about->url() ?>" data-title="<?= $about->title()->html() ?>" data-target="page"><?= $about->title()->html() ?></a></div>
 </div>
 
 <?php snippet('footer') ?>
