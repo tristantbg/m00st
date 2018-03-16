@@ -8,8 +8,8 @@
 	data-target="project">
 		<img 
 		src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-		data-srcset="<?= resizeOnDemand($image, 200) ?> 200w, <?= resizeOnDemand($image, 500) ?> 500w, <?= resizeOnDemand($image, 700) ?> 700w" 
-		data-src="<?= resizeOnDemand($image, 500) ?>" 
+		data-srcset="<?= $image->width(200)->url() ?> 200w, <?= $image->width(500)->url() ?> 500w, <?= $image->width(700)->url() ?> 700w" 
+		data-src="<?= $image->width(500)->url() ?>" 
 		data-sizes="auto" 
 		data-optimumx="1.5" 
 		class="lazyimg lazyload" 

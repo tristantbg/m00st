@@ -2,11 +2,11 @@
 //image 1
 	$image1 = $data->content1()->toFile();
 	$srcset1 = '';
-	for ($i = 500; $i <= 2000; $i += 500) $srcset1 .= resizeOnDemand($image1, $i) . ' ' . $i . 'w,';
+	for ($i = 500; $i <= 2000; $i += 500) $srcset1 .= $image1->width($i)->url() . ' ' . $i . 'w,';
 //image 2
 	$image2 = $data->content2()->toFile();
 	$srcset2 = '';
-	for ($i = 500; $i <= 2000; $i += 500) $srcset2 .= resizeOnDemand($image2, $i) . ' ' . $i . 'w,';
+	for ($i = 500; $i <= 2000; $i += 500) $srcset2 .= $image1->width($i)->url() . ' ' . $i . 'w,';
 ?>
 <div class="slide">
 	<div class="duo-content patternify">
@@ -14,7 +14,7 @@
 			<div class="image-content">
 				<img 
 				src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-				data-src="<?= resizeOnDemand($image1, 1500) ?>" 
+				data-src="<?= $image1->width(1500)->url() ?>" 
 				data-srcset="<?= $srcset1 ?>" 
 				data-sizes="auto" 
 				data-optimumx="1.5" 
@@ -24,7 +24,7 @@
 				<div class="lsd">
 					<img 
 					src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-					data-src="<?= resizeOnDemand($image1, 1500) ?>" 
+					data-src="<?= $image1->width(1500)->url() ?>" 
 					data-srcset="<?= $srcset1 ?>" 
 					data-sizes="auto" 
 					data-optimumx="1.5" 
@@ -34,14 +34,14 @@
 				</div>
 				<?php if($seo): ?>
 				<noscript>
-					<img src="<?= resizeOnDemand($image1, 1500) ?>" alt="<?= $caption ?>" height="100%" width="auto" />
+					<img src="<?= $image1->width(1500)->url() ?>" alt="<?= $caption ?>" height="100%" width="auto" />
 				</noscript>
 				<?php endif ?>
 			</div><!-- gap
 --><div class="image-content">
 	<img 
 	src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-	data-src="<?= resizeOnDemand($image2, 1500) ?>" 
+	data-src="<?= $image2->width(1500)->url() ?>" 
 	data-srcset="<?= $srcset2 ?>" 
 	data-sizes="auto" 
 	data-optimumx="1.5" 
@@ -51,7 +51,7 @@
 	<div class="lsd">
 		<img 
 		src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-		data-src="<?= resizeOnDemand($image2, 1500) ?>" 
+		data-src="<?= $image2->width(1500)->url() ?>" 
 		data-srcset="<?= $srcset2 ?>" 
 		data-sizes="auto" 
 		data-optimumx="1.5" 
@@ -61,7 +61,7 @@
 	</div>
 	<?php if($seo): ?>
 	<noscript>
-		<img src="<?= resizeOnDemand($image2, 1500) ?>" alt="<?= $caption ?>" height="100%" width="auto" />
+		<img src="<?= $image2->width(1500)->url() ?>" alt="<?= $caption ?>" height="100%" width="auto" />
 	</noscript>
 	<?php endif ?>
 </div>

@@ -19,7 +19,7 @@ $bot = _bot_detected();
 
 <?php if(!$bot): ?>
 <script>
-	window.location = window.location.href.replace("series/", "#");
+	window.location = window.location.href.replace("series/", "series/#");
 </script>
 <?php endif ?>
 

@@ -4,7 +4,7 @@
 	$imagesize = $data->imagesize();
 	$contain = $data->contain()->bool();
 	$srcset = '';
-	for ($i = 500; $i <= 2000; $i += 500) $srcset .= resizeOnDemand($image, $i) . ' ' . $i . 'w,';
+	for ($i = 500; $i <= 2000; $i += 500) $srcset .= $image->width($i)->url() . ' ' . $i . 'w,';
 ?>
 <div class="slide middle-align">
 	<div class="image-content solo<?php e($imagesize == 'full', ' full') ?>"  
@@ -13,7 +13,7 @@
 	<?php endif ?>>
 	<img 
 	src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-	data-src="<?= resizeOnDemand($image, 1500) ?>" 
+	data-src="<?= $image->width(1500)->url() ?>" 
 	data-srcset="<?= $srcset ?>" 
 	data-sizes="auto" 
 	data-optimumx="1.5" 
@@ -23,7 +23,7 @@
 	<div class="lsd">
 		<img 
 		src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-		data-src="<?= resizeOnDemand($image, 1500) ?>" 
+		data-src="<?= $image->width(1500)->url() ?>" 
 		data-srcset="<?= $srcset ?>" 
 		data-sizes="auto" 
 		data-optimumx="1.5" 
@@ -33,7 +33,7 @@
 	</div>
 	<?php if($seo): ?>
 	<noscript>
-		<img src="<?= resizeOnDemand($image, 1500) ?>" alt="<?= $caption ?>" height="100%" width="auto" />
+		<img src="<?= $image->width(1500)->url() ?>" alt="<?= $caption ?>" height="100%" width="auto" />
 	</noscript>
 	<?php endif ?>
 	</div>
