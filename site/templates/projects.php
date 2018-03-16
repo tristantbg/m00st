@@ -2,6 +2,8 @@
 
 <?php snippet('') ?>
 
+<?php if ($first): ?>
+
 <div id="elevator">
 
 <?php foreach ($projects as $key => $project): ?>
@@ -40,6 +42,7 @@
 
 </div>
 
+		
 <div id="bottom-bar">
 	<div id="image-number">
 		Image
@@ -59,5 +62,7 @@
 	</div>
 	<div id="about-btn" class="title hover"><a href="<?= $about->url() ?>" data-title="<?= $about->title()->html() ?>" data-target="page"><?= $about->title()->html() ?></a></div>
 </div>
+
+<?php endif ?>
 
 <?php snippet('footer') ?>

@@ -6,4 +6,4 @@ files: true
 fields:
   featuredImages:
     label: Featured images
-    type: gallery
+    type: images
