@@ -10,7 +10,7 @@
 ?>
 <div class="slide">
 	<div class="duo-content patternify">
-		<div class="group">
+		<div class="group"<?php e($data->height() != '0', ' style="height:' . $data->height() . '%;"') ?>>
 			<div class="image-content">
 				<img 
 				src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
