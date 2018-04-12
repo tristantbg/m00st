@@ -6,7 +6,7 @@
 //image 2
 	$image2 = $data->content2()->toFile();
 	$srcset2 = '';
-	for ($i = 500; $i <= 2000; $i += 500) $srcset2 .= $image1->width($i)->url() . ' ' . $i . 'w,';
+	for ($i = 500; $i <= 2000; $i += 500) $srcset2 .= $image2->width($i)->url() . ' ' . $i . 'w,';
 ?>
 <div class="slide">
 	<div class="duo-content patternify">
