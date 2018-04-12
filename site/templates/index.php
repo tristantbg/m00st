@@ -30,7 +30,7 @@
 			data-target="project" 
 			data-slide="1" 
 			<?php if($project->featured()->isNotEmpty()): ?>
-			data-hover="<?= $project->featured()->toFile()->width(1500) ?>" 
+			data-hover="<?= $project->featured()->toFile()->width(1500)->url() ?>" 
 			<?php endif ?>
 			>
 			<h2><?= $project->title()->html() ?></h2>
