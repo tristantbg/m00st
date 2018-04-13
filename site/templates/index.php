@@ -42,7 +42,7 @@
 
 				<?php 
 					$lazygallery = false;
-					if ($section->_fieldset() == 'twoimages') {
+					if ($section->_fieldset() == 'twoimages' || $section->_fieldset() == 'duo') {
 						$images = array($section->content1(), $section->content2());
 					} 
 					 else {
