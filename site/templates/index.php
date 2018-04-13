@@ -25,16 +25,14 @@
 		data-subtitle="<?php e($project->date(), $project->date('Y').' '); echo $project->subtitle()->html(); ?>" 
 		data-anchor="<?= $project->uid() ?>">
 
-			<a href="<?= $project->url() ?>" 
+			<h2><a href="<?= $project->url() ?>" 
 			data-anchor="<?= $project->uid() ?>" 
 			data-target="project" 
 			data-slide="1" 
 			<?php if($project->featured()->isNotEmpty()): ?>
 			data-hover="<?= $project->featured()->toFile()->width(1500)->url() ?>" 
 			<?php endif ?>
-			>
-			<h2><?= $project->title()->html() ?></h2>
-			</a>
+			><?= $project->title()->html() ?></a></h2>
 			
 			<?php $slideIdx = 1 ?>
 
