@@ -14,7 +14,9 @@
     "rupture": "*"
   },
   "dependencies": {
+    "flickity": "^2.1.1",
     "fullpage.js": "^2.9.4",
-    "lazysizes": "^3.0.0"
+    "lazysizes": "^3.0.0",
+    "viewport-units-buggyfill": "^0.6.2"
   }
 }

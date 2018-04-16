@@ -210,7 +210,7 @@ pattern()
 			text-transform uppercase
 			color $secondary
 			z-index 600
-			font-size 10vw
+			font-size 8vw
 			letter-spacing -.05em
 			white-space nowrap
 			+below($md)
@@ -289,7 +289,7 @@ pattern()
 			transform(scaleY(1.2) skewY(-6deg) translateY(-30%) translateZ(0))
 			transform-origin bottom
 			+below($md)
-				transform(scaleY(1.4) skewY(-10deg) translateY(-30%) translateZ(0))
+				transform scaleY(1.4) skewY(-10deg) translateY(-30%) translateZ(0)
 			.lsd
 				display block
 				opacity 0.6

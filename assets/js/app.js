@@ -5,7 +5,7 @@ var width = $(window).width(),
     $slider = [],
     scrollingSpeed = 1600,
     isMobile = false,
-    $root = '/moostang/';
+    $root = '/';
 $(function() {
     var app = {
         init: function() {
@@ -250,12 +250,12 @@ $(function() {
                     prevNextButtons: true,
                     pageDots: false,
                     draggable: isMobile,
-                    dragThreshold: 40
+                    dragThreshold: 60
                 });
                 $slider[index].flkty = $slider[index].data('flickity');
                 $slider[index].count = $slider[index].flkty.slides.length;
                 $slider[index].first('.slide').find('.lazyimg:not(".lazyloaded")').addClass('lazyload');
-                $slider[index].on('select.flickity', function() {
+                $slider[index].on('change.flickity', function() {
                     if ($slider[index].flkty) {
                         $selected = $($slider[index].flkty.selectedElement);
                         $slider[index].idx = $slider[index].flkty.selectedIndex + 1;
@@ -264,11 +264,16 @@ $(function() {
                         $(adjCellElems).find('.lazyimg:not(".lazyloaded")').addClass('lazyload');
                     }
                 });
+                $slider[index].on('click', function() {
+                    if (isMobile) {
+                      app.goNext($slider[index]);
+                    }
+                });
                 // $slider[index].on('staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
                 //     if (!cellElement || !isMobile) {
                 //         return;
                 //     }
-                //     if (!isMobile) {
+                //     if (isMobile) {
                 //       app.goNext($slider[index]);
                 //     }
                 // });
