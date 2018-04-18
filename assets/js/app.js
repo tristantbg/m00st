@@ -255,7 +255,7 @@ $(function() {
                 $slider[index].flkty = $slider[index].data('flickity');
                 $slider[index].count = $slider[index].flkty.slides.length;
                 $slider[index].first('.slide').find('.lazyimg:not(".lazyloaded")').addClass('lazyload');
-                $slider[index].on('change.flickity', function() {
+                $slider[index].on('select.flickity', function() {
                     if ($slider[index].flkty) {
                         $selected = $($slider[index].flkty.selectedElement);
                         $slider[index].idx = $slider[index].flkty.selectedIndex + 1;
