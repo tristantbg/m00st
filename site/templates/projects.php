@@ -28,6 +28,14 @@
 	
 	<?php $caption = $project->title()->html().' — © '.$site->title()->html(); ?>
 	
+	<?php if ($project->intendedTemplate() == 'project.video'): ?>
+	<div class="slider video-player">
+		<?php if ($project->embed()->isNotEmpty()): ?>
+			<div class="player"><?= $project->embed()->embed() ?></div>
+			<div class="slide"></div>
+		<?php endif ?>
+	</div>
+	<?php else: ?>
 	<div class="slider">
 		<?php foreach($project->medias()->toStructure() as $section): ?>
 
@@ -35,6 +43,7 @@
 
 		<?php endforeach ?>
 	</div>
+	<?php endif ?>
 
 </div>
 

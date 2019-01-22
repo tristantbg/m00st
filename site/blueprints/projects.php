@@ -4,6 +4,7 @@ title: Projects
 pages:
   template:
     - project
+    - project.video
 files: true
 deletable: false
 options:

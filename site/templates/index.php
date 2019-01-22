@@ -16,7 +16,7 @@
 
 <div id="index-content">
 
-	<?php foreach ($projects as $key => $project): ?>
+	<?php foreach ($projects->filterBy('intendedTemplate', 'not in', ['project.video']) as $key => $project): ?>
 
 	<div
 		class="index-serie" 
