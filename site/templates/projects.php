@@ -31,7 +31,11 @@
 	<?php if ($project->intendedTemplate() == 'project.video'): ?>
 	<div class="slider video-player">
 		<?php if ($project->embed()->isNotEmpty()): ?>
-			<div class="player"><?= $project->embed()->embed() ?></div>
+			<?php if ($thumb = $project->featured()->toFile()): ?>
+			<div class="player"><?= $project->embed()->embed(['lazyvideo' => true, 'thumb' => $thumb->width(2000)->url()]) ?></div>
+			<?php else: ?>
+			<div class="player"><?= $project->embed()->embed(['lazyvideo' => true]) ?></div>
+			<?php endif ?>
 			<div class="slide"></div>
 		<?php endif ?>
 	</div>
